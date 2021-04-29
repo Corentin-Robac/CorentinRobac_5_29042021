@@ -7,11 +7,11 @@
 }
 
 .btn-primary {
-    background: #9c6dfa;
+    background: #9c6dfa!important;
     border: none;
 }
 .btn-primary:hover {
-    background: #ab85f8;
+    background: #ab85f8!important;
     border: none;
 }
 .card {
@@ -30,4 +30,12 @@ img.card-img-top {
 
 #cameraprice {
     font-weight: bold;
+}
+
+.centered {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

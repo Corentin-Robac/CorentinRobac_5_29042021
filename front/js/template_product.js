@@ -28,7 +28,6 @@ function displayCamera(camera) {
     document.getElementById("cameradescription").innerHTML += camera.description;
 
     modeles = camera.lenses;
-    //console.log(modeles[0]);
     for (modele of modeles){
         document.getElementById("inlineFormCustomSelect").innerHTML += '<option value="'+modele+'">'+modele+'</option>';
     }
@@ -39,3 +38,42 @@ function getId(){
     const id_product = url_id_product.slice(1); //Supprime "?"
     return id_product; //Retourne l'id
 }
+
+function setLocalStorage(infosCamera) {
+    let camera_localStorage = JSON.parse(localStorage.getItem("camera"));
+    if(camera_localStorage){
+        add_to_localStorage(infosCamera,camera_localStorage);
+    }
+    else{
+        camera_localStorage = [];
+        add_to_localStorage(infosCamera,camera_localStorage);
+    }
+}
+
+function add_to_localStorage(infosCamera,camera_localStorage){
+    camera_localStorage.push(infosCamera);
+    localStorage.setItem("camera", JSON.stringify(camera_localStorage));
+}
+
+let add_to_cart = document.querySelector("#button");
+add_to_cart.addEventListener("click", async function() {
+    modele_selected = document.querySelector("#inlineFormCustomSelect").value;
+    quantity_selected = document.querySelector("#quantity").value;
+    const cameras = await getCameras();
+    const id_product = await getId();
+    for (camera of cameras) {
+        if(camera._id == id_product){
+            infosCamera = {
+                id: camera._id,
+                name: camera.name,
+                price: camera.price,
+                image: camera.imageUrl,
+                description: camera.description,
+                modele: modele_selected,
+                quantity: quantity_selected
+            };
+        }
+    }
+    setLocalStorage(infosCamera);
+});
+
