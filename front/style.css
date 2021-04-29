@@ -1,3 +1,11 @@
+.card-camera:hover {
+    text-decoration:none;
+}
+
+.card-camera {
+    color: #3b4044!important;
+}
+
 .btn-primary {
     background: #9c6dfa;
     border: none;
@@ -10,8 +18,16 @@
     border: none;
 }
 img.card-img-top {
-    height: 230px;
     width: auto;
     object-fit: cover;
 }
 
+#cameraname {
+    font-weight: bold;
+    color: #9c6dfa;
+    font-size: 1.5em;
+}
+
+#cameraprice {
+    font-weight: bold;
+}

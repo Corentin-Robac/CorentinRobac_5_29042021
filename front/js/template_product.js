@@ -21,7 +21,17 @@ function getCameras() {
 }
 
 function displayCamera(camera) {
-    document.getElementById("display_product_template").innerHTML += '<div class="col-12 col-md-6"><img class="p-3 img-fluid" src="'+camera.imageUrl+'"></div><div class="col-6"><p class="row">'+camera.name+'</p><p class="row">'+camera.price+' €'+'</p><p class="row">'+camera.description+'</p><form><div class="form-row align-items-center"><div class="col-auto my-1"><label for="inlineFormCustomSelect">Modèle</label><select id="inlineFormCustomSelect"><option selected>Choix</option><option value="1">One</option><option value="2">Two</option><option value="3">Three</option></select></div></div><div class="row"><label for="quantity">Quantité: </label><input id="quantity" name="quantity" type="number" value="1" min="1" placeholder="1" step="1"></div><button type="button" class="add-to-cart row btn btn-primary" data-id="" data-name="" data-price="" data-quantity="" data-modele="" data-url="">Ajouter au panier</button></form></div>';
+    document.getElementById("cameraimage").innerHTML += '<img class="card-img-top img-fluid" src="'+camera.imageUrl+'" alt="Image du produit">';
+    document.getElementById("cameraname").innerHTML += camera.name;
+    let price = (camera.price/100).toFixed(2);
+    document.getElementById("cameraprice").innerHTML += price+'€';
+    document.getElementById("cameradescription").innerHTML += camera.description;
+
+    modeles = camera.lenses;
+    //console.log(modeles[0]);
+    for (modele of modeles){
+        document.getElementById("inlineFormCustomSelect").innerHTML += '<option value="'+modele+'">'+modele+'</option>';
+    }
 }
 
 function getId(){

@@ -33,10 +33,36 @@
    </header>
    <main>
 
-      <div class="container mb-4">
+      <div class="container my-5">
 
-         <div class="row" id="display_product_template">
+         <div class="row">
             <!--Products template-->
+            <div class="col-12 col-md-6 mb-5" id="cameraimage">
+
+            </div>
+            
+            <div class="col-12 col-md-6">
+                <p class="row" id="cameraname"></p>
+                <p class="row" id="cameraprice"></p>
+                <p class="row" id="cameradescription"></p>
+                
+                <form>
+                    <div class="row mb-3">
+                            <label class="mr-2" for="inlineFormCustomSelect">Modèle</label>
+                            <select id="inlineFormCustomSelect">
+                                <option selected>Choix</option>
+                            </select>
+                    </div>
+                   
+                    <div class="row mb-3">
+                        <label class="mr-2" for="quantity">Quantité: </label>
+                        <input id="quantity" name="quantity" type="number" value="1" min="1" placeholder="1" step="1">
+                    </div>
+                    
+                    <button type="button" class="add-to-cart row btn btn-primary" data-id="" data-name="" data-price="" data-quantity="" data-modele="" data-url="">Ajouter au panier</button>
+                
+                </form>
+            </div>
 
          </div>
 
