@@ -1,0 +1,17 @@
+.btn-primary {
+    background: #9c6dfa;
+    border: none;
+}
+.btn-primary:hover {
+    background: #ab85f8;
+    border: none;
+}
+.card {
+    border: none;
+}
+img.card-img-top {
+    height: 230px;
+    width: auto;
+    object-fit: cover;
+}
+
