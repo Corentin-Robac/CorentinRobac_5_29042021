@@ -51,9 +51,18 @@ function setLocalStorage(infosCamera) {
 }
 
 function add_to_localStorage(infosCamera,camera_localStorage){
+
+    //si id et modele de infosCamera = id et modele d'un des objets de camera_localStorage alors quantité de cet objet += quantité infosCamera
+    console.log(camera_localStorage);
+    for (camera_in_local of camera_localStorage){
+        if(camera_in_local.id == infosCamera.id && camera_in_local.modele == infosCamera.modele){
+            //supprimer l'objet du local storage
+            camera_in_local.quantity += infosCamera.quantity; // 11 à la place de 2
+        }
+    }
     camera_localStorage.push(infosCamera);
     localStorage.setItem("camera", JSON.stringify(camera_localStorage));
-}
+    }
 
 let add_to_cart = document.querySelector("#button");
 add_to_cart.addEventListener("click", async function() {
