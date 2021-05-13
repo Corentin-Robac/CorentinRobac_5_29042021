@@ -26,6 +26,14 @@ img.card-img-top {
     font-weight: bold;
     color: #9c6dfa;
     font-size: 1.5em;
+    text-decoration:none; 
+}
+
+.title {
+    font-weight: bold;
+    color: #9c6dfa;
+    font-size: 1.5em;
+    margin-bottom: 0;   
 }
 
 #cameraprice {
@@ -38,4 +46,12 @@ img.card-img-top {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.precisions {
+    font-style: italic;
+}
+
+.send_checkout {
+    color: white!important;
 }

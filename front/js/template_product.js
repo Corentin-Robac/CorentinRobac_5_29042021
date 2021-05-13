@@ -80,15 +80,15 @@ add_to_cart.addEventListener("click", async function() {
     let camera_localStorage = JSON.parse(localStorage.getItem("cameras"));
     const id_product = await getId();
     const camera = await getCamera(camera_localStorage,id_product);
-        infosCamera = {
-            id: camera.id,
-            name: camera.name,
-            price: camera.price,
-            image: camera.image,
-            description: camera.description,
-            modele: modele_selected,
-            quantity: quantity_selected
-        };
+    infosCamera = {
+        id: camera.id,
+        name: camera.name,
+        price: camera.price,
+        image: camera.image,
+        description: camera.description,
+        modele: modele_selected,
+        quantity: quantity_selected
+    };
     setLocalStorage(infosCamera);
 });
 /*----------FIN Ajouter au panier----------*/
