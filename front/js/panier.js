@@ -45,13 +45,71 @@ function deleteAndTotalCartProducts(cart_products) {
     document.getElementById("template_cameras_card").innerHTML += "<div class='container my-5'><div class='row'><div class='col-6'><p class='title'>Total du panier : "+(totalCartPrice/100).toFixed(2)+"€</p></div><div class='col-6'><button id='deletecartProducts' class='btn btn-primary'>Vider le panier</button></div></div></div>";
 }
 
+function regexNomPrenomVille(data,input) {
+    if(/^[a-zA-ZÀ-ú\-\s]{3,20}$/.test(data)) {
+        goodContent(input);
+        return true;
+    }
+    else {
+        wrongContent(input);
+        return false;
+    }
+}
+function regexAdresse(data,input) {
+    if(/^[a-zA-ZÀ-ú0-9\-\s\']{7,50}$/.test(data)) {
+        goodContent(input);
+        return true;
+    }
+    else {
+        wrongContent(input);
+        return false;
+    }
+}
+function regexMail(data,input) {
+    if(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(data)) {
+        goodContent(input);
+        return true;
+    }
+    else {
+        wrongContent(input);
+        return false;
+    }
+}
+
+function goodContent(input) {
+    console.log(input);
+    document.querySelector("#"+input).style.color = '#495057';
+}
+
+function wrongContent(input) {
+    console.log(input);
+    document.querySelector("#"+input).style.color = 'red';
+}
+
+
 let send_checkout = document.querySelector(".send_checkout");
 send_checkout.addEventListener("click", async function() {
-    let firstname_form = document.querySelector("#firstName").value;
-    let lastName_form = document.querySelector("#lastName").value;
-    let address_form = document.querySelector("#address").value;
-    let city_form = document.querySelector("#city").value;
-    let email_form = document.querySelector("#email").value;
+
+    let firstname_form_value = document.querySelector("#firstName").value;
+    let firstname_form = document.querySelector("#firstName").id;
+    let regexFirstname = regexNomPrenomVille(firstname_form_value,firstname_form);
+
+    let lastName_form_value = document.querySelector("#lastName").value;
+    let lastName_form = document.querySelector("#lastName").id;
+    let regexName = regexNomPrenomVille(lastName_form_value,lastName_form);
+
+    let address_form_value = document.querySelector("#address").value;
+    let address_form = document.querySelector("#address").id;
+    let regexAdress = regexAdresse(address_form_value,address_form);
+
+    let city_form_value = document.querySelector("#city").value;
+    let city_form = document.querySelector("#city").id;
+    let regexCity = regexNomPrenomVille(city_form_value,city_form);
+
+    let email_form_value = document.querySelector("#email").value;
+    let email_form = document.querySelector("#email").id;
+    let regexEmail = regexMail(email_form_value,email_form);
+
     let products = [];
     let cart_products = JSON.parse(localStorage.getItem("panier"));
 
@@ -61,31 +119,39 @@ send_checkout.addEventListener("click", async function() {
 
     let formData = {
         contact: {
-            firstName: firstname_form,
-            lastName: lastName_form,
-            address: address_form,
-            city: city_form,
-            email: email_form
+            firstName: firstname_form_value,
+            lastName: lastName_form_value,
+            address: address_form_value,
+            city: city_form_value,
+            email: email_form_value
         },
         products: products
     }
 
-    await fetch('http://localhost:3000/api/cameras/order', {
-        method: "POST",
-        headers: {"Content-type": "application/json; charset=UTF-8"},
-        body: JSON.stringify(formData)
-    })
-    .then(function(response) {
-        return response.json();
-    })
-    .then(function(data) {
-        let order_Id = data.orderId;
-        add_orderId_to_localstorage(order_Id);
-        window.location.href = "checkout.html";
-    })
-    .catch(function(error) {
-        console.log(error);
-    });
+    if(regexFirstname == true && regexName == true && regexAdress == true && regexCity == true && regexEmail == true){
+
+        await fetch('http://localhost:3000/api/cameras/order', {
+            method: "POST",
+            headers: {"Content-type": "application/json; charset=UTF-8"},
+            body: JSON.stringify(formData)
+        })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            let order_Id = data.orderId;
+            add_orderId_to_localstorage(order_Id);
+            window.location.href = "checkout.html";
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+
+    }
+    else {
+        console.log('form mal rermpli');
+    }
+
 });
 
 let deleteAll = document.querySelector("#deletecartProducts");

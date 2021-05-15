@@ -15,7 +15,7 @@ function main() {
 function displayOrder(orderId) {
     let totalPrice = (getTotalPrice()/100).toFixed(2);
     if(orderId){
-        document.getElementById("id_order").innerHTML += "<h1>Merci d'avoir passer commande sur Orinoco !</h1><br><p>Votre numéro de commande est le <span id='cameraname'>"+orderId+"</span></p>";
+        document.getElementById("id_order").innerHTML += "<h1>Merci d'avoir passé commande sur Orinoco !</h1><br><p>Votre numéro de commande est le <span id='cameraname'>"+orderId+"</span></p>";
         document.getElementById("total").innerHTML += "<p>Total de la commande : <span id='cameraname'>"+totalPrice+"€</span></p>";
         document.getElementById("buton_to_cart").innerHTML += "<a href='index.html' class='btn btn-primary button'>Retour à la boutique</a>";
     }
