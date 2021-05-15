@@ -169,7 +169,7 @@ let buttons = document.querySelectorAll(".button"); // Lier les boutons supprime
 for (let button of buttons) { // Lecture des boutons
     button.addEventListener('click', async function() { // Ecouteur d'évènement au clic sur un bouton supprimer du panier
         let cart_products = JSON.parse(localStorage.getItem("panier")); // Stock les articles du panier 
-        let id_product = button.id.split('&'); // Stock le l'id du produit par le lien du bouton
+        let id_product = button.id.split('&'); // Stock l'id du produit par le lien du bouton
         let button_id_product = id_product[0]; //Stock la 1ere partie de l'id du bouton = id du produit
         let button_modele_product = id_product[1]; // Stock la 2e partie de l'id du bouton = modele du produit
         for (i=0; i<cart_products.length; i++) { // Lecture du tableau des produits
@@ -180,5 +180,6 @@ for (let button of buttons) { // Lecture des boutons
         localStorage.removeItem("panier"); // Supprime le panier actuel
         localStorage.setItem("panier", JSON.stringify(cart_products)); // Recréer le nouveau panier actualisé
         window.location.href="panier.html"; // Redirection vers la page panier
+        console.log(button);
     });
 }
